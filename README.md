@@ -41,3 +41,28 @@ $ sudo pip install pywxpay
 ```
 
 Python 3使用pip3、python3命令安装。
+
+## 示例
+以统一下单为例：
+```python
+# coding: utf-8
+from pywxpay import WXPay
+wxpay = WXPay(app_id='wx8888888998', 
+              mch_id='8888888',
+              key='123434556677888999987766543543322', 
+              cert_pem_path='/path/to/apiclient_cert.pem',
+              key_pem_path='/path/to/apiclient_key.pem',
+              timeout=6.0)
+             
+wxpay_resp_dict = wxpay.unifiedorder(dict(device_info='WEB',
+                                          body='测试商家-商品类目',
+                                          detail='',
+                                          out_trade_no='2016090910595900000012',
+                                          total_fee=1,
+                                          fee_type='CNY',
+                                          notify_url='http://www.example.com/wxpay/notify',
+                                          spbill_create_ip='123.12.12.123',
+                                          trade_type='NATIVE')
+                                     )
+
+print( wxpay_resp_dict )
